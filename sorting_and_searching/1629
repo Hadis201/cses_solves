@@ -1,0 +1,34 @@
+//movie festival
+#include <bits/stdc++.h>
+using namespace std;
+#define int long long
+#define nl '\n'
+
+void solve(int tc) {
+    int n; cin >> n;
+    vector<pair<int, int>> ar;
+    for(int i=1; i<=n; i++){
+        int x, y; cin >> x >> y;
+        ar.push_back({x, y});
+    }
+    sort(ar.begin(), ar.end());
+    vector<int> ans(n+1);
+    int cur = 1;
+    for(int i=n-1; i>=0; i--){
+        int x = lower_bound(ar.begin(), ar.end(), make_pair(ar[i].second, ar[i].second))-ar.begin();
+        ans[i]=max(cur, ans[x]+1);
+        cur = max(cur, ans[i]);
+    }
+    cout << ans[0] << nl;
+}
+
+int32_t main() {
+    ios_base::sync_with_stdio(false);cin.tie(nullptr), cout.tie(nullptr);
+    
+    int t = 1;      
+    // cin >> t;
+
+    for(int tc=1; tc<=t; tc++){
+        solve(tc);
+    }
+}
