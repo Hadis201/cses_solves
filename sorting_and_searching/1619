@@ -3,17 +3,31 @@
 using namespace std;
 #define int long long
 #define nl '\n'
-
+#define pii pair<int, int>
+ 
 void solve(int tc) {
-    
+    int n; cin >> n;
+    vector<pii> a;
+    for(int i=1; i<=n; i++){
+        int x, y; cin >> x>>y;
+        a.push_back({x, +1});
+        a.push_back({y, -1});
+    }
+    sort(a.begin(), a.end());
+    int ans = 0, cur = 0;
+    for(auto& i: a){
+        cur += i.second;
+        ans = max(ans, cur);
+    }
+    cout << ans << nl;
 }
-
+ 
 int32_t main() {
     ios_base::sync_with_stdio(false);cin.tie(nullptr), cout.tie(nullptr);
     
     int t = 1;      
     // cin >> t;
-
+ 
     for(int tc=1; tc<=t; tc++){
         solve(tc);
     }
